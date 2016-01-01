@@ -29,6 +29,10 @@ if node[id][:with_ipv6]
   module_list << 'nginx::ipv6'
 end
 
+if node[id][:with_ct]
+  module_list << "#{id}::ngx_ct_module"
+end
+
 node.default['nginx']['source']['modules'] = module_list
 
 node.default['nginx']['openssl_source']['version'] = node[id][:openssl][:version]
