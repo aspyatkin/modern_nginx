@@ -14,3 +14,5 @@ default[id][:openssl][:tarball_checksum] = 'e23ccafdb75cfcde782da0151731aa218519
 default[id][:ct][:version] = '1.0.0'
 default[id][:ct][:url] = 'https://github.com/grahamedgecombe/nginx-ct/archive'
 default[id][:ct][:tarball_checksum] = 'b7a2cae4707c88cc9a3ff14bf5803de76be2d69d553dfd30937253c4312a8227'
+
+default[id][:ssl_data_bag_name] = 'ssl'
