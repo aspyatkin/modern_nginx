@@ -33,7 +33,12 @@ module ModernNginx
     end
 
     def get_scts_directory(domain)
-      ::File.join get_scts_base_directory, domain
+      entry = get_ssl_certificate_entry domain
+      if entry.nil?
+        nil
+      else
+        ::File.join get_scts_base_directory, entry['domains'][0]
+      end
     end
 
     def get_acme_challenge_base_directory
