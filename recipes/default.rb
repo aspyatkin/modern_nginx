@@ -76,6 +76,9 @@ template ssl_defaults_conf do
   source 'ssl.defaults.erb'
   mode 0644
   notifies :reload, 'service[nginx]', :delayed
-  variables ssl_dhparam: dhparam_path
+  variables(
+    ssl_dhparam: dhparam_path,
+    ssl_configuration: node[id][:ssl_configuration]
+  )
   action :create
 end
