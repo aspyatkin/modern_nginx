@@ -1,15 +1,15 @@
 id = :modern_nginx
 
-default[id][:version] = '1.9.11'
-default[id][:tarball_checksum] = '6a5c72f4afaf57a6db064bba0965d72335f127481c5d4e64ee8714e7b368a51f'
+default[id][:version] = '1.9.12'
+default[id][:tarball_checksum] = '1af2eb956910ed4b11aaf525a81bc37e135907e7127948f9179f5410337da042'
 
 default[id][:with_http2] = true
 default[id][:with_ipv6] = true
 default[id][:with_dhparam] = true
 default[id][:with_ct] = true
 
-default[id][:openssl][:version] = '1.0.2f'
-default[id][:openssl][:tarball_checksum] = '932b4ee4def2b434f85435d9e3e19ca8ba99ce9a065a61524b429a9d5e9b2e9c'
+default[id][:openssl][:version] = '1.0.2g'
+default[id][:openssl][:tarball_checksum] = 'b784b1b3907ce39abf4098702dade6365522a253ad1552e267a9a0e89594aa33'
 
 default[id][:ct][:version] = '1.0.0'
 default[id][:ct][:url] = 'https://github.com/grahamedgecombe/nginx-ct/archive'
