@@ -1,19 +1,19 @@
 id = :modern_nginx
 
-default[id][:version] = '1.9.12'
-default[id][:tarball_checksum] = '1af2eb956910ed4b11aaf525a81bc37e135907e7127948f9179f5410337da042'
+default[id][:version] = '1.10.0'
+default[id][:tarball_checksum] = '8ed647c3dd65bc4ced03b0e0f6bf9e633eff6b01bac772bcf97077d58bc2be4d'
 
 default[id][:with_http2] = true
 default[id][:with_ipv6] = true
 default[id][:with_dhparam] = true
 default[id][:with_ct] = true
 
-default[id][:openssl][:version] = '1.0.2g'
-default[id][:openssl][:tarball_checksum] = 'b784b1b3907ce39abf4098702dade6365522a253ad1552e267a9a0e89594aa33'
+default[id][:openssl][:version] = '1.0.2h'
+default[id][:openssl][:tarball_checksum] = '1d4007e53aad94a5b2002fe045ee7bb0b3d98f1a47f8b2bc851dcd1c74332919'
 
-default[id][:ct][:version] = '1.0.0'
+default[id][:ct][:version] = '1.2.0'
 default[id][:ct][:url] = 'https://github.com/grahamedgecombe/nginx-ct/archive'
-default[id][:ct][:tarball_checksum] = 'b7a2cae4707c88cc9a3ff14bf5803de76be2d69d553dfd30937253c4312a8227'
+default[id][:ct][:tarball_checksum] = '63e6dcb16a7860520513598ff67bdcd3e978b5fcd96d63b2afb08a0cfd29f232'
 
 default[id][:ssl_data_bag_name] = 'ssl'
-default[id][:ssl_configuration] = 'modern'  # or indermediate
+default[id][:ssl_configuration] = 'modern' # or indermediate
