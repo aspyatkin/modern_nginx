@@ -5,7 +5,7 @@ module ModernNginx
     end
 
     def get_ssl_certificate_entry(domain)
-      data_bag_item(node[:modern_nginx][:ssl_data_bag_name], node.chef_environment).to_hash.fetch('certs', []).detect do |entry|
+      data_bag_item(node['modern_nginx']['ssl_data_bag_name'], node.chef_environment).to_hash.fetch('certs', []).detect do |entry|
         entry['domains'].include? domain
       end
     end
