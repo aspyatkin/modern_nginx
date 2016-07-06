@@ -20,5 +20,4 @@ default[id]['ct']['version'] = '1.2.0'
 default[id]['ct']['url'] = 'https://github.com/grahamedgecombe/nginx-ct/archive'
 default[id]['ct']['tarball_checksum'] = '63e6dcb16a7860520513598ff67bdcd3e978b5fcd96d63b2afb08a0cfd29f232'
 
-default[id]['ssl_data_bag_name'] = 'ssl'
 default[id]['ssl_configuration'] = 'modern' # or intermediate
