@@ -1,6 +1,6 @@
 name 'modern_nginx'
 description 'Installs and configures nginx'
-version '1.3.0'
+version '2.0.0'
 
 recipe 'modern_nginx', 'Installs and configures nginx'
-depends 'nginx', '2.7.6'
+depends 'chef_nginx', '~> 5.1.0'

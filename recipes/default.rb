@@ -3,16 +3,15 @@ require 'chef/rewind'
 
 id = 'modern_nginx'
 
-node.default[id]['version'] = node[id][node[id]['install']]['version']
-node.default[id]['tarball_checksum'] = \
-  node[id][node[id]['install']]['tarball_checksum']
-
 node.default['nginx']['install_method'] = 'source'
-node.default['nginx']['source']['version'] = node[id]['version']
-node.default['nginx']['source']['prefix'] = "/opt/nginx-#{node[id]['version']}"
-node.default['nginx']['source']['url'] = \
-  "http://nginx.org/download/nginx-#{node[id]['version']}.tar.gz"
-node.default['nginx']['source']['checksum'] = node[id]['tarball_checksum']
+
+node.default['nginx']['version'] = node[id][node[id]['install']]['version']
+
+node.default['nginx']['source']['version'] = node['nginx']['version']
+node.default['nginx']['source']['prefix'] = \
+  "/opt/nginx-#{node['nginx']['source']['version']}"
+node.default['nginx']['source']['conf_path'] = \
+  "#{node['nginx']['dir']}/nginx.conf"
 node.default['nginx']['source']['sbin_path'] = \
   "#{node['nginx']['source']['prefix']}/sbin/nginx"
 node.default['nginx']['source']['default_configure_flags'] = %W(
@@ -21,17 +20,24 @@ node.default['nginx']['source']['default_configure_flags'] = %W(
   --sbin-path=#{node['nginx']['source']['sbin_path']}
 )
 
-module_list = [
-  'nginx::http_gzip_static_module',
-  'nginx::http_ssl_module',
-  'nginx::openssl_source'
-]
+node.default['nginx']['configure_flags'] = []
+node.default['nginx']['source']['url'] = \
+  "http://nginx.org/download/nginx-#{node['nginx']['source']['version']}.tar.gz"
+node.default['nginx']['source']['checksum'] = \
+  node[id][node[id]['install']]['checksum']
 
-module_list << "#{id}::http_v2_module" if node[id]['with_http2']
-module_list << 'nginx::ipv6' if node[id]['with_ipv6']
+module_list = %w(
+  chef_nginx::http_gzip_static_module
+  chef_nginx::http_ssl_module
+  chef_nginx::openssl_source
+)
+
+module_list << 'chef_nginx::http_v2_module' if node[id]['with_http2']
+module_list << 'chef_nginx::ipv6' if node[id]['with_ipv6']
 module_list << "#{id}::ngx_ct_module" if node[id]['with_ct']
 
 node.default['nginx']['source']['modules'] = module_list
+node.default['nginx']['source']['use_existing_user'] = false
 
 node.default['nginx']['openssl_source']['version'] = \
   node[id]['openssl']['version']
@@ -39,36 +45,27 @@ node.default['nginx']['openssl_source']['url'] = \
   'http://www.openssl.org/source/openssl-'\
   "#{node[id]['openssl']['version']}.tar.gz"
 
-node.default['nginx']['server_tokens'] = 'off'
-node.default['nginx']['default_site_enabled'] = false
-
-include_recipe 'nginx::source'
-
-openssl_src_filename = ::File.basename node['nginx']['openssl_source']['url']
+openssl_src_filename = ::File.basename(node['nginx']['openssl_source']['url'])
 openssl_src_filepath = ::File.join(
   ::Chef::Config['file_cache_path'],
   openssl_src_filename
 )
 
+node.default['nginx']['server_tokens'] = 'off'
+node.default['nginx']['default_site_enabled'] = false
+
+include_recipe 'chef_nginx::default'
+
 rewind remote_file: openssl_src_filepath do
   source node['nginx']['openssl_source']['url']
-  owner 'root'
-  checksum node[id]['openssl']['tarball_checksum']
-  group node['root_group']
-  mode 0644
-  action :create
+  checksum node[id]['openssl']['checksum']
+  not_if { ::File.exist?(openssl_src_filepath) }
 end
-
-ssl_defaults_conf = ::File.join(
-  node['nginx']['dir'],
-  'conf.d',
-  'ssl_defaults.conf'
-)
 
 dhparam_path = nil
 
 if node[id]['with_dhparam']
-  dhparam_path = ::File.join node['nginx']['dir'], 'dhparam.pem'
+  dhparam_path = ::File.join(node['nginx']['dir'], 'dhparam.pem')
 
   execute 'Create OpenSSL dhparam file' do
     command "openssl dhparam 2048 -out #{dhparam_path}"
@@ -78,6 +75,12 @@ if node[id]['with_dhparam']
     action :run
   end
 end
+
+ssl_defaults_conf = ::File.join(
+  node['nginx']['dir'],
+  'conf.d',
+  'ssl_defaults.conf'
+)
 
 template ssl_defaults_conf do
   source 'ssl.defaults.erb'
