@@ -62,31 +62,19 @@ rewind remote_file: openssl_src_filepath do
   not_if { ::File.exist?(openssl_src_filepath) }
 end
 
-dhparam_path = nil
-
-if node[id]['with_dhparam']
-  dhparam_path = ::File.join(node['nginx']['dir'], 'dhparam.pem')
-
-  execute 'Create OpenSSL dhparam file' do
-    command "openssl dhparam 2048 -out #{dhparam_path}"
-    user 'root'
-    group node['root_group']
-    creates dhparam_path
-    action :run
-  end
-end
-
 ssl_defaults_conf = ::File.join(
   node['nginx']['dir'],
   'conf.d',
   'ssl_defaults.conf'
 )
 
+dhparam_h = ::ChefCookbook::DHParam.new(node)
+
 template ssl_defaults_conf do
   source 'ssl.defaults.erb'
   mode 0644
   variables(
-    ssl_dhparam: dhparam_path,
+    ssl_dhparam: dhparam_h.default_key_file,
     ssl_configuration: node[id]['ssl_configuration']
   )
   notifies :reload, 'service[nginx]', :delayed
