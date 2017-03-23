@@ -34,6 +34,8 @@ module_list = %w(
 
 module_list << 'chef_nginx::http_v2_module' if node[id]['with_http2']
 module_list << 'chef_nginx::ipv6' if node[id]['with_ipv6']
+module_list << "chef_nginx::http_stub_status_module" if node[id]['with_status']
+
 module_list << "#{id}::ngx_ct_module" if node[id]['with_ct']
 
 node.default['nginx']['source']['modules'] = module_list

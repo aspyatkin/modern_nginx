@@ -13,6 +13,7 @@ default[id]['mainline']['checksum'] = \
 default[id]['with_http2'] = true
 default[id]['with_ipv6'] = true
 default[id]['with_ct'] = true
+default[id]['with_status'] = false
 
 default[id]['openssl']['version'] = '1.0.2k'
 default[id]['openssl']['checksum'] = \
