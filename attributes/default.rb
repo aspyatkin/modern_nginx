@@ -6,10 +6,11 @@ default[id]['stable']['version'] = '1.10.3'
 default[id]['stable']['checksum'] = \
   '75020f1364cac459cb733c4e1caed2d00376e40ea05588fb8793076a4c69dd90'
 
-default[id]['mainline']['version'] = '1.11.10'
+default[id]['mainline']['version'] = '1.11.13'
 default[id]['mainline']['checksum'] = \
-  '778b3cabb07633f754cd9dee32fc8e22582bce22bfa407be76a806abd935533d'
+  '360b601ef8ed2998c80fa56a27bf3cd745c3ce18c5fb10892e6595467b1415d3'
 
+default[id]['with_openssl'] = true
 default[id]['with_http2'] = true
 default[id]['with_ipv6'] = true
 default[id]['with_ct'] = true
