@@ -1,14 +1,14 @@
 id = 'modern_nginx'
 
-default[id]['install'] = 'mainline'
+default[id]['install'] = 'stable'
 
-default[id]['stable']['version'] = '1.12.0'
+default[id]['stable']['version'] = '1.12.1'
 default[id]['stable']['checksum'] = \
-  'b4222e26fdb620a8d3c3a3a8b955e08b713672e1bc5198d1e4f462308a795b30'
+  '8793bf426485a30f91021b6b945a9fd8a84d87d17b566562c3797aba8fac76fb'
 
-default[id]['mainline']['version'] = '1.13.1'
+default[id]['mainline']['version'] = '1.13.4'
 default[id]['mainline']['checksum'] = \
-  'a5856c72a6609a4dc68c88a7f3c33b79e6693343b62952e021e043fe347b6776'
+  'de21f3c49ba65c611329d8759a63d72e5fcf719bc6f2a3270e2541348ef1fbba'
 
 default[id]['with_openssl'] = true
 default[id]['with_http2'] = true
@@ -17,9 +17,9 @@ default[id]['with_ct'] = true
 default[id]['with_headers_more'] = true
 default[id]['with_status'] = false
 
-default[id]['openssl']['version'] = '1.0.2l'
+default[id]['openssl']['version'] = '1.1.0f'
 default[id]['openssl']['checksum'] = \
-  'ce07195b659e75f4e1db43552860070061f156a98bb37b672b101ba6e3ddf30c'
+  '12f746f3f2493b2f39da7ecf63d7ee19c6ac9ec6a4fcd8c229da8a522cb12765'
 
 default[id]['ct']['version'] = '1.3.2'
 default[id]['ct']['url'] = 'https://github.com/grahamedgecombe/nginx-ct/archive'
