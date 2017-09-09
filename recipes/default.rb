@@ -38,6 +38,7 @@ module_list << 'chef_nginx::http_stub_status_module' if node[id]['with_status']
 module_list << 'chef_nginx::headers_more_module' if node[id]['with_headers_more']
 module_list << "#{id}::ngx_ct_module" if node[id]['with_ct']
 module_list << "chef_nginx::http_realip_module" if node[id]['with_realip']
+module_list << "#{id}::ngx_debug_module" if node[id]['with_debug']
 
 node.default['nginx']['source']['modules'] = module_list
 node.default['nginx']['source']['use_existing_user'] = false

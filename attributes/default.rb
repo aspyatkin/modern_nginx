@@ -17,6 +17,7 @@ default[id]['with_ct'] = true
 default[id]['with_headers_more'] = true
 default[id]['with_status'] = false
 default[id]['with_realip'] = false
+default[id]['with_debug'] = false
 
 default[id]['openssl']['version'] = '1.1.0f'
 default[id]['openssl']['checksum'] = \
