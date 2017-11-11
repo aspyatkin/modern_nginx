@@ -27,17 +27,17 @@ node.default['nginx']['source']['checksum'] = \
   node[id][node[id]['install']]['checksum']
 
 module_list = %w(
-  chef_nginx::http_gzip_static_module
+  nginx::http_gzip_static_module
 )
 
-module_list << 'chef_nginx::http_ssl_module' if node[id]['with_openssl']
-module_list << 'chef_nginx::openssl_source' if node[id]['with_openssl']
-module_list << 'chef_nginx::http_v2_module' if node[id]['with_http2'] && node[id]['with_openssl']
-module_list << 'chef_nginx::ipv6' if node[id]['with_ipv6']
-module_list << 'chef_nginx::http_stub_status_module' if node[id]['with_status']
-module_list << 'chef_nginx::headers_more_module' if node[id]['with_headers_more']
+module_list << 'nginx::http_ssl_module' if node[id]['with_openssl']
+module_list << 'nginx::openssl_source' if node[id]['with_openssl']
+module_list << 'nginx::http_v2_module' if node[id]['with_http2'] && node[id]['with_openssl']
+module_list << 'nginx::ipv6' if node[id]['with_ipv6']
+module_list << 'nginx::http_stub_status_module' if node[id]['with_status']
+module_list << 'nginx::headers_more_module' if node[id]['with_headers_more']
 module_list << "#{id}::ngx_ct_module" if node[id]['with_ct']
-module_list << "chef_nginx::http_realip_module" if node[id]['with_realip']
+module_list << 'nginx::http_realip_module' if node[id]['with_realip']
 module_list << "#{id}::ngx_debug_module" if node[id]['with_debug']
 
 node.default['nginx']['source']['modules'] = module_list
@@ -65,7 +65,7 @@ if node[id]['with_openssl']
     "#{node[id]['openssl']['version']}.tar.gz"
 end
 
-include_recipe 'chef_nginx::default'
+include_recipe 'nginx::default'
 
 if node[id]['with_openssl']
   openssl_src_filename = ::File.basename(node['nginx']['openssl_source']['url'])
