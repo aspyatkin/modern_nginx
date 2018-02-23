@@ -6,9 +6,9 @@ default[id]['stable']['version'] = '1.12.2'
 default[id]['stable']['checksum'] = \
   '305f379da1d5fb5aefa79e45c829852ca6983c7cd2a79328f8e084a324cf0416'
 
-default[id]['mainline']['version'] = '1.13.6'
+default[id]['mainline']['version'] = '1.13.8'
 default[id]['mainline']['checksum'] = \
-  '8512fc6f986a20af293b61f33b0e72f64a72ea5b1acbcc790c4c4e2d6f63f8f8'
+  '8410b6c31ff59a763abf7e5a5316e7629f5a5033c95a3a0ebde727f9ec8464c5'
 
 default[id]['with_openssl'] = true
 default[id]['with_http2'] = true
@@ -17,6 +17,7 @@ default[id]['with_ct'] = true
 default[id]['with_headers_more'] = true
 default[id]['with_status'] = false
 default[id]['with_realip'] = false
+default[id]['with_geoip2'] = false
 default[id]['with_debug'] = false
 
 default[id]['openssl']['version'] = '1.1.0g'
@@ -33,5 +34,24 @@ default[id]['headers_more']['url'] = \
   "https://github.com/openresty/headers-more-nginx-module/archive/v%{version}.tar.gz"
 default[id]['headers_more']['checksum'] = \
   'a3dcbab117a9c103bc1ea5200fc00a7b7d2af97ff7fd525f16f8ac2632e30fbf'
+
+default[id]['geoip2']['version'] = '2.0'
+default[id]['geoip2']['url'] = 'https://github.com/leev/ngx_http_geoip2_module/archive'
+default[id]['geoip2']['checksum'] = \
+  'ebb4652c4f9a2e1ee31fddefc4c93ff78e651a4b2727d3453d026bccbd708d99'
+
+default[id]['geoip2']['databases']['dir'] = '/etc/chef-nginx/geolite2'
+
+default[id]['geoip2']['databases']['country']['name'] = 'GeoLite2-Country.mmdb'
+default[id]['geoip2']['databases']['country']['url'] = \
+  'http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.tar.gz'
+default[id]['geoip2']['databases']['country']['checksum'] = \
+  '0e0611d5f86e08432e68a1989923a61357deceb81eecabe45e89b3da79af169c'
+
+default[id]['geoip2']['databases']['city']['name'] = 'GeoLite2-City.mmdb'
+default[id]['geoip2']['databases']['city']['url'] = \
+  'http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz'
+default[id]['geoip2']['databases']['city']['checksum'] = \
+  'f6593b6cb1c645d98b51ab99e6f6e1330885af3be01f54e24e740e64954484c4'
 
 default[id]['ssl_configuration'] = 'modern' # or intermediate
