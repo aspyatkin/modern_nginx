@@ -46,12 +46,12 @@ default[id]['geoip2']['databases']['country']['name'] = 'GeoLite2-Country.mmdb'
 default[id]['geoip2']['databases']['country']['url'] = \
   'http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.tar.gz'
 default[id]['geoip2']['databases']['country']['checksum'] = \
-  '0e0611d5f86e08432e68a1989923a61357deceb81eecabe45e89b3da79af169c'
+  '7f4b455ba611b623ae9f45afe5249aae9f881befd4f78489d21dee6f94faf1fa'
 
 default[id]['geoip2']['databases']['city']['name'] = 'GeoLite2-City.mmdb'
 default[id]['geoip2']['databases']['city']['url'] = \
   'http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz'
 default[id]['geoip2']['databases']['city']['checksum'] = \
-  'f6593b6cb1c645d98b51ab99e6f6e1330885af3be01f54e24e740e64954484c4'
+  '82400c9519f8c3d90b7b4eea451053c55efbc939d9de69f1fbc3bd443be652ed'
 
 default[id]['ssl_configuration'] = 'modern' # or intermediate
