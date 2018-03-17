@@ -6,9 +6,9 @@ default[id]['stable']['version'] = '1.12.2'
 default[id]['stable']['checksum'] = \
   '305f379da1d5fb5aefa79e45c829852ca6983c7cd2a79328f8e084a324cf0416'
 
-default[id]['mainline']['version'] = '1.13.8'
+default[id]['mainline']['version'] = '1.13.9'
 default[id]['mainline']['checksum'] = \
-  '8410b6c31ff59a763abf7e5a5316e7629f5a5033c95a3a0ebde727f9ec8464c5'
+  '5faea18857516fe68d30be39c3032bd22ed9cf85e1a6fdf32e3721d96ff7fa42'
 
 default[id]['with_openssl'] = true
 default[id]['with_http2'] = true
@@ -18,6 +18,7 @@ default[id]['with_headers_more'] = true
 default[id]['with_status'] = false
 default[id]['with_realip'] = false
 default[id]['with_geoip2'] = false
+default[id]['with_secure_link'] = false
 default[id]['with_debug'] = false
 
 default[id]['openssl']['version'] = '1.1.0g'
