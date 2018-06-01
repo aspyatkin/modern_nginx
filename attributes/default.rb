@@ -19,6 +19,7 @@ default[id]['with_status'] = false
 default[id]['with_realip'] = false
 default[id]['with_geoip2'] = false
 default[id]['with_secure_link'] = false
+default[id]['with_njs'] = false
 default[id]['with_debug'] = false
 
 default[id]['openssl']['version'] = '1.1.0h'
@@ -54,5 +55,10 @@ default[id]['geoip2']['databases']['city']['url'] = \
   'http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz'
 default[id]['geoip2']['databases']['city']['checksum'] = \
   'c86219316fbadccfe3973330e3946ce14bd57dbadafdb5e7c0f526c5bb27a933'
+
+default[id]['njs']['version'] = '0.2.0'
+default[id]['njs']['url'] = 'https://github.com/nginx/njs/archive'
+default[id]['njs']['checksum'] = \
+  '18b12bf7b5ff00a287a9d0b802b19b8c55f2e5b1e0574cc8183d9a2648647108'
 
 default[id]['ssl_configuration'] = 'modern' # or intermediate

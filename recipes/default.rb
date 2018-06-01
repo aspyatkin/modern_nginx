@@ -40,6 +40,7 @@ module_list << "#{id}::ngx_ct_module" if node[id]['with_ct']
 module_list << 'nginx::http_realip_module' if node[id]['with_realip']
 module_list << "#{id}::ngx_geoip2_module" if node[id]['with_geoip2']
 module_list << "#{id}::ngx_secure_link_module" if node[id]['with_secure_link']
+module_list << "#{id}::ngx_njs_module" if node[id]['with_njs']
 module_list << "#{id}::ngx_debug_module" if node[id]['with_debug']
 
 node.default['nginx']['source']['modules'] = module_list
