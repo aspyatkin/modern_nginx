@@ -92,15 +92,20 @@ if node[id]['with_openssl']
     'ssl_defaults.conf'
   )
 
-  dhparam_h = ::ChefCookbook::DHParam.new(node)
+  dhparam_file 'default' do
+    key_length 2048
+    action :create
+  end
 
   template ssl_defaults_conf do
     source 'ssl.defaults.erb'
     mode 0644
-    variables(
-      ssl_dhparam: dhparam_h.default_key_file,
-      ssl_configuration: node[id]['ssl_configuration']
-    )
+    variables lazy {
+      {
+        ssl_dhparam: ::ChefCookbook::DHParam.file(node, 'default'),
+        ssl_configuration: node[id]['ssl_configuration']
+      }
+    }
     notifies :reload, 'service[nginx]', :delayed
     action :create
   end
